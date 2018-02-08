@@ -1,21 +1,23 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Places.Models
+namespace Pets.Models
 {
-  public class Place
+  public class Pet
   {
     private string _name;
     private string _description;
     private int _id;
-    private static List<Place> _instances = new List<Place> {};
+    private static List<Pet> _instances = new List<Pet> {};
+    private string _hunger;
 
-    public Place(string name, string description)
+    public Pet(string name, string description, string hunger)
     {
       _name = name;
       _instances.Add(this);
       _id = _instances.Count;
       _description = description;
+      _hunger = hunger;
     }
 
     public string GetName()
@@ -26,6 +28,16 @@ namespace Places.Models
     public void SetName(string newName)
     {
       _name = newName;
+    }
+
+    public string GetHunger()
+    {
+      return _hunger;
+    }
+
+    public void SetHunger(string newHunger)
+    {
+      _hunger = newHunger;
     }
 
     public string GetDescription()
@@ -42,7 +54,7 @@ namespace Places.Models
     {
       return _id;
     }
-    public static List<Place> GetAll()
+    public static List<Pet> GetAll()
     {
       return _instances;
     }
@@ -50,7 +62,7 @@ namespace Places.Models
     {
       _instances.Clear();
     }
-    public static Place Find(int searchId)
+    public static Pet Find(int searchId)
     {
       return _instances[searchId-1];
     }
